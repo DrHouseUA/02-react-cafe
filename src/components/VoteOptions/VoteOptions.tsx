@@ -2,24 +2,16 @@ import type { VoteType } from "../../types/votes";
 import css from "./VoteOptions.module.css";
 
 interface VoteOptionsProps {
-  resetVotes: () => void;
-  onUpdate: (type: VoteType) => void;
+  onReset: () => void;
+  onVote: (type: VoteType) => void;
   canReset: boolean;
 }
 
 export default function VoteOptions({
-  resetVotes,
-  onUpdate,
+  onReset,
+  onVote,
   canReset,
 }: VoteOptionsProps) {
-  const onVote = (type: VoteType) => {
-    onUpdate(type);
-  };
-
-  const onReset = () => {
-    resetVotes();
-  };
-
   return (
     <>
       <div className={css.container}>

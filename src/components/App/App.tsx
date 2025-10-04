@@ -8,6 +8,11 @@ import Notification from "../Notification/Notification";
 export default function App() {
   const [votes, setVotes] = useState<Votes>({ good: 0, neutral: 0, bad: 0 });
 
+  const totalVotes = votes.good + votes.neutral + votes.bad;
+  const positiveRate = totalVotes
+    ? Math.round((votes.good / totalVotes) * 100)
+    : 0;
+
   const handleVote = (type: VoteType) => {
     setVotes({
       ...votes,
@@ -15,14 +20,8 @@ export default function App() {
     });
   };
 
-  const totalVotes = votes.good + votes.neutral + votes.bad;
-  const positiveRate = totalVotes
-    ? Math.round((votes.good / totalVotes) * 100)
-    : 0;
-
   const resetVotes = () => {
     setVotes({
-      ...votes,
       good: 0,
       bad: 0,
       neutral: 0,
@@ -34,8 +33,8 @@ export default function App() {
       <div className={css.app}>
         <CafeInfo></CafeInfo>
         <VoteOptions
-          onUpdate={handleVote}
-          resetVotes={resetVotes}
+          onVote={handleVote}
+          onReset={resetVotes}
           canReset={totalVotes > 0 ? true : false}
         ></VoteOptions>
         {totalVotes > 0 ? (

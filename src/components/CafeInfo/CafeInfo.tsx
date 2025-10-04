@@ -1,9 +1,6 @@
-// import { useState } from 'react'
 import css from "./CafeInfo.module.css";
 
 export default function CafeInfo() {
-  // const [count, setCount] = useState(0)
-
   return (
     <>
       <div className={css.container}>
